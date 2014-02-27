@@ -1,0 +1,21 @@
+body {
+  padding: 20px;
+  font-family: Baskerville, Georgia, serif;
+}
+
+.name {
+  text-align: center;
+  font-size: 24px;
+}
+
+.gravatar {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  background:
+    url('http://gravatar.com/avatar/ca34681a45aff25c58c7c5ce9a8b0a32?s=400')
+    no-repeat
+    center center;
+  background-size: 200px;
+  border-radius: 100px;
+}

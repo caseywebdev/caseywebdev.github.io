@@ -1,0 +1,14 @@
+{
+  "options": {
+    "amd.concat": true,
+    "amd.basePath": "client",
+    "amd.names": {
+      "react": "bower_components/react/react.js"
+    },
+    "processors.es6.options.compatFix": true
+  },
+  "targets": {
+    "client/index.es6": "public",
+    "styles/index.scss": "public"
+  }
+}

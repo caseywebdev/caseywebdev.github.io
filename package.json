@@ -1,0 +1,18 @@
+{
+  "name": "caseywebdev.github.io",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:caseywebdev/caseywebdev.github.io"
+  },
+  "devDependencies": {
+    "bower": "x",
+    "cogs": "x",
+    "csso": "x",
+    "es6-module-transpiler": "x",
+    "node-sass": "x",
+    "react-tools": "x",
+    "uglify-js": "x"
+  }
+}
