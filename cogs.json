@@ -3,7 +3,13 @@
     "amd.concat": true,
     "amd.basePath": "client",
     "amd.names": {
-      "react": "bower_components/react/react.js"
+      "box2d": "bower_components/box2d.js/box2d.js",
+      "pixi": "bower_components/pixi/bin/pixi.js",
+      "react": "bower_components/react/react.js",
+      "underscore": "bower_components/underscore/underscore.js"
+    },
+    "amd.shims": {
+      "box2d": {"global": "Box2D"}
     },
     "processors.es6.options.compatFix": true
   },

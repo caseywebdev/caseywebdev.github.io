@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "amdainty": "x",
-    "react": "x"
+    "box2d.js": "master",
+    "pixi": "x",
+    "react": "x",
+    "underscore": "x"
   }
 }
