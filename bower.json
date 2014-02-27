@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "amdainty": "x",
-    "box2d.js": "master",
+    "box2d.js": "x",
     "pixi": "x",
     "react": "x",
     "underscore": "x"
