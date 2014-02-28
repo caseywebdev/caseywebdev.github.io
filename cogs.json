@@ -7,7 +7,12 @@
       "react": "bower_components/react/react.js",
       "underscore": "bower_components/underscore/underscore.js"
     },
-    "processors.es6.options.compatFix": true
+    "processors.es6.options.compatFix": true,
+    "compressors.js.options.arguments": ["--warning_level=QUIET"]
+  },
+  "compressors": {
+    "js": "closure-compiler",
+    "css": "csso"
   },
   "targets": {
     "client/index.es6": "public",

@@ -4,7 +4,9 @@ COGS=$(BIN)cogs
 dev:
 	$(COGS) -w client,styles
 
-deploy:
+compress:
 	$(COGS) -c
+
+deploy: compress
 	git commit -am "Release `date`"
 	git push
