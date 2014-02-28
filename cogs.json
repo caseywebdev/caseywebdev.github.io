@@ -4,7 +4,6 @@
     "amd.basePath": "client",
     "amd.names": {
       "box2d": "bower_components/box2d.js/box2d.umd.js",
-      "pixi": "bower_components/pixi/bin/pixi.js",
       "react": "bower_components/react/react.js",
       "underscore": "bower_components/underscore/underscore.js"
     },
