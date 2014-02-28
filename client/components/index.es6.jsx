@@ -124,6 +124,10 @@ export default React.createClass({
         style={{
           WebkitTransform: 'translate3d(' + x + 'px, ' + y + 'px, 0) ' +
             'rotateZ(' + deg + 'deg)',
+          MozTransform: 'translate3d(' + x + 'px, ' + y + 'px, 0) ' +
+            'rotateZ(' + deg + 'deg)',
+          transform: 'translate3d(' + x + 'px, ' + y + 'px, 0) ' +
+            'rotateZ(' + deg + 'deg)',
           position: 'absolute'
         }}
       >
