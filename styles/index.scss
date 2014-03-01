@@ -1,5 +1,12 @@
+html,
+body,
+#index {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
   font-family: Baskerville, Georgia, serif;
 }
 
@@ -22,4 +29,8 @@ body {
     center center;
   background-size: 200px;
   border-radius: 100px;
+}
+
+.ball {
+  position: absolute;
 }
