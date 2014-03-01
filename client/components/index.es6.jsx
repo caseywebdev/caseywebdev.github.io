@@ -13,6 +13,13 @@ export default React.createClass({
   componentWillMount: function () {
     this.mouseIsDown = false;
     this.mouseX = this.mouseY = 0;
+    this.createWorld();
+    window.addEventListener('resize', this.createWorld);
+    window.addEventListener('deviceorientation', this.handleOrientation);
+  },
+
+  createWorld: function () {
+    if (this.world) this.destroyWorld();
     var gravity = new Box2D.b2Vec2(0, config.gravity);
     this.world = new Box2D.b2World(gravity);
     Box2D.destroy(gravity);
@@ -22,17 +29,24 @@ export default React.createClass({
     var wallsFixtureDef = new Box2D.b2FixtureDef();
     wallsFixtureDef.set_friction(1);
     wallsFixtureDef.set_restitution(0);
+    var width = window.innerWidth;
+    var height = window.innerHeight;
     wallsFixtureDef.set_shape(Box2D.CreateLoopShape([
-      {x: 0, y: 15},
+      {x: 0, y: height / config.ptm},
       {x: 0, y: 0},
-      {x: 20, y: 0},
-      {x: 20, y: 15}
+      {x: width / config.ptm, y: 0},
+      {x: width / config.ptm, y: height / config.ptm}
     ]));
     walls.CreateFixture(wallsFixtureDef);
     Box2D.destroy(wallsFixtureDef);
 
     this.balls = _.times(100, _.partial(this.createBall, 0.45));
     this.balls.push(this.createBall(2));
+  },
+
+  destroyWorld: function () {
+    Box2D.destroy(this.world);
+    delete this.world;
   },
 
   createBall: function (radius) {
@@ -69,7 +83,8 @@ export default React.createClass({
   componentWillUnmount: function () {
     clearTimeout(this.stepTimeoutId);
     cancelAnimationFrame(this.animationFrameId);
-    Box2D.destroy(this.world);
+    window.removeEventListener('resize', this.createWorld);
+    this.destroyWorld();
   },
 
   step: function () {
@@ -114,6 +129,14 @@ export default React.createClass({
 
   handleMouseUp: function () {
     this.mouseIsDown = false;
+  },
+
+  handleOrientation: function (ev) {
+    var gravity = this.world.GetGravity();
+    var x = ev.gamma / 90 * config.gravity;
+    var y = ev.beta / 180 * config.gravity;
+    gravity.Set(x, y);
+    this.world.SetGravity(gravity);
   },
 
   renderBall: function (ball, i) {
