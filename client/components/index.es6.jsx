@@ -11,8 +11,6 @@ var cancelAnimationFrame = window.cancelAnimationFrame;
 
 export default React.createClass({
   componentWillMount: function () {
-    this.mouseIsDown = false;
-    this.mouseX = this.mouseY = 0;
     this.createWorld();
     window.addEventListener('resize', this.createWorld);
     window.addEventListener('deviceorientation', this.handleOrientation);
@@ -20,7 +18,7 @@ export default React.createClass({
 
   createWorld: function () {
     if (this.world) this.destroyWorld();
-    var gravity = new Box2D.b2Vec2(0, config.gravity);
+    var gravity = new Box2D.b2Vec2(0, 0);
     this.world = new Box2D.b2World(gravity);
     Box2D.destroy(gravity);
     var wallsBodyDef = new Box2D.b2BodyDef();
@@ -40,8 +38,15 @@ export default React.createClass({
     walls.CreateFixture(wallsFixtureDef);
     Box2D.destroy(wallsFixtureDef);
 
-    this.balls = _.times(100, _.partial(this.createBall, 0.45));
-    this.balls.push(this.createBall(2));
+    var scale = Math.min(width, height) / 900;
+    this.balls = _.times(Math.floor(scale * 100), _.partial(this.createBall, {
+      className: 'gravatar',
+      radius: scale * 25
+    }));
+    this.balls.push(this.createBall({
+      className: 'gravatar',
+      radius: scale * 200
+    }));
   },
 
   destroyWorld: function () {
@@ -49,7 +54,7 @@ export default React.createClass({
     delete this.world;
   },
 
-  createBall: function (radius) {
+  createBall: function (options) {
     var bodyDef = new Box2D.b2BodyDef();
     bodyDef.set_type(Box2D.b2_dynamicBody);
 
@@ -57,19 +62,24 @@ export default React.createClass({
     Box2D.destroy(bodyDef);
 
     var pos = body.GetPosition();
-    pos.Set(Math.random() * 20, Math.random() * 15);
+    pos.Set(
+      Math.random() * window.innerWidth / config.ptm,
+      Math.random() * window.innerHeight / config.ptm
+    );
     body.SetTransform(pos, 0);
 
     var fixtureDef = new Box2D.b2FixtureDef();
     var circle = new Box2D.b2CircleShape();
-    circle.set_m_radius(radius);
+    circle.set_m_radius(options.radius / config.ptm);
     fixtureDef.set_shape(circle);
     fixtureDef.set_density(1);
     fixtureDef.set_friction(1);
-    fixtureDef.set_restitution(0);
+    fixtureDef.set_restitution(0.25);
     body.CreateFixture(fixtureDef);
     Box2D.destroy(circle);
     Box2D.destroy(fixtureDef);
+
+    body.options = options;
 
     return body;
   },
@@ -92,22 +102,6 @@ export default React.createClass({
     var dt = (now - this.lastStep) / 1000;
     this.lastStep = now;
     this.world.Step(dt, 8, 3);
-    var body = this.world.GetBodyList();
-    while (body.a) {
-      var x = body.GetPosition().get_x();
-      var y = body.GetPosition().get_y();
-      var mX = this.mouseX / config.ptm;
-      var mY = this.mouseY / config.ptm;
-      var dX = x - mX;
-      var dY = y - mY;
-      var d = Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
-      if (d < 5) {
-        var vector = new Box2D.b2Vec2((dX / d) * 100, (dY / d) * 100);
-        body.ApplyForce(vector, body.GetWorldCenter());
-        Box2D.destroy(vector);
-      }
-      body = body.GetNext();
-    }
     this.stepTimeoutId = setTimeout(this.step, 1000 / config.sps);
   },
 
@@ -116,34 +110,37 @@ export default React.createClass({
     this.animationFrameId = requestAnimationFrame(this.redraw);
   },
 
-  handleMouseDown: function (ev) {
-    this.mouseIsDown = true;
-    this.updateMouseCoords(ev);
-  },
-
   updateMouseCoords: function (ev) {
-    var el = this.getDOMNode().childNodes[0];
-    this.mouseX = ev.pageX - el.offsetLeft;
-    this.mouseY = ev.pageY - el.offsetTop;
-  },
-
-  handleMouseUp: function () {
-    this.mouseIsDown = false;
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var x = (ev.clientX - (width * 0.5)) / width * config.gravity;
+    var y = (ev.clientY - (height * 0.5)) / height * config.gravity;
+    this.setGravity(x, y);
   },
 
   handleOrientation: function (ev) {
-    var gravity = this.world.GetGravity();
     var x = ev.gamma / 90 * config.gravity;
     var y = ev.beta / 180 * config.gravity;
+    this.setGravity(x, y);
+  },
+
+  setGravity: function (x, y) {
+    var gravity = this.world.GetGravity();
     gravity.Set(x, y);
     this.world.SetGravity(gravity);
   },
 
   renderBall: function (ball, i) {
-    var x = ball.GetPosition().get_x() * config.ptm;
-    var y = ball.GetPosition().get_y() * config.ptm;
-    var angle = ball.GetAngle() / Math.PI * 180;
-    return <Ball key={i} x={x} y={y} angle={angle} />;
+    return (
+      <Ball
+        key={i}
+        x={ball.GetPosition().get_x() * config.ptm}
+        y={ball.GetPosition().get_y() * config.ptm}
+        angle={ball.GetAngle() / Math.PI * 180}
+        radius={ball.options.radius}
+        className={ball.options.className}
+      />
+    );
   },
 
   render: function () {

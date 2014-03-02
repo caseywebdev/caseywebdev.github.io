@@ -5,20 +5,24 @@ import React from 'react';
 
 export default React.createClass({
   getStyle: function () {
-    var x = this.props.x - (config.ptm * 0.45);
-    var y = this.props.y - (config.ptm * 0.45);
+    var radius = this.props.radius;
+    var x = this.props.x - radius;
+    var y = this.props.y - radius;
     var transform = 'translate3d(' + x + 'px, ' + y + 'px, 0) ' +
       'rotateZ(' + this.props.angle + 'deg)';
     return {
       WebkitTransform: transform,
       MozTransform: transform,
-      transform: transform
+      transform: transform,
+      width: radius * 2,
+      height: radius * 2
     };
   },
 
   render: function () {
+    var Tag = this.props.href ? React.DOM.a : React.DOM.div;
     return this.transferPropsTo(
-      <div className='ball' style={this.getStyle()}>🐶</div>
+      <Tag className='ball' style={this.getStyle()} />
     );
   }
 });

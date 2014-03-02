@@ -6,32 +6,23 @@ body,
 
 body {
   margin: 0;
-  height: 100%;
   background: #667;
   font-family: Baskerville, Georgia, serif;
 }
 
 #index {
-  height: 100%;
-}
-
-.name {
-  text-align: center;
-  font-size: 24px;
-}
-
-.gravatar {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  background:
-    url('http://gravatar.com/avatar/ca34681a45aff25c58c7c5ce9a8b0a32?s=400')
-    no-repeat
-    center center;
-  background-size: 200px;
-  border-radius: 100px;
+  overflow: hidden;
 }
 
 .ball {
+  display: block;
   position: absolute;
+  border-radius: 9999px;
+  background: #334 no-repeat center center;
+  background-size: contain;
+}
+
+.gravatar {
+  background-image:
+    url('http://gravatar.com/avatar/ca34681a45aff25c58c7c5ce9a8b0a32?s=400');
 }
