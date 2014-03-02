@@ -45,7 +45,8 @@ export default React.createClass({
     }));
     this.balls.push(this.createBall({
       className: 'gravatar',
-      radius: scale * 200
+      radius: scale * 200,
+      href: 'mailto:c@sey.me'
     }));
   },
 
@@ -110,7 +111,7 @@ export default React.createClass({
     this.animationFrameId = requestAnimationFrame(this.redraw);
   },
 
-  updateMouseCoords: function (ev) {
+  handleMouseMove: function (ev) {
     var width = window.innerWidth;
     var height = window.innerHeight;
     var x = (ev.clientX - (width * 0.5)) / width * config.gravity;
@@ -128,6 +129,7 @@ export default React.createClass({
     var gravity = this.world.GetGravity();
     gravity.Set(x, y);
     this.world.SetGravity(gravity);
+    _.invoke(this.balls, 'SetAwake', true);
   },
 
   renderBall: function (ball, i) {
@@ -139,18 +141,14 @@ export default React.createClass({
         angle={ball.GetAngle() / Math.PI * 180}
         radius={ball.options.radius}
         className={ball.options.className}
+        href={ball.options.href}
       />
     );
   },
 
   render: function () {
     return (
-      <div
-        id='index'
-        onMouseDown={this.handleMouseDown}
-        onMouseMove={this.updateMouseCoords}
-        onMouseUp={this.handleMouseUp}
-      >
+      <div id='index' onMouseMove={this.handleMouseMove}>
         {this.balls.map(this.renderBall)}
       </div>
     );
