@@ -39,15 +39,26 @@ export default React.createClass({
     Box2D.destroy(wallsFixtureDef);
 
     var scale = Math.min(width, height) / 900;
-    this.balls = _.times(Math.floor(scale * 100), _.partial(this.createBall, {
-      className: 'gravatar',
-      radius: scale * 25
-    }));
-    this.balls.push(this.createBall({
-      className: 'gravatar',
-      radius: scale * 200,
-      href: 'mailto:c@sey.me'
-    }));
+    this.balls = _.times(Math.floor(scale * 100), function () {
+      return this.createBall({
+        className: 'gravatar',
+        radius: scale * (10 + Math.random() * 40)
+      });
+    }, this).concat(
+      _.map({
+        gravatar: 'mailto:c@sey.me',
+        facebook: 'https://www.facebook.com/caseywebdev',
+        twitter: 'https://twitter.com/caseywebdev',
+        github: 'https://github.com/caseywebdev',
+        orgsync: 'http://www.orgsync.com/company/team_member/casey-foster'
+      }, function (href, className) {
+        return this.createBall({
+          className: className,
+          radius: scale * (className === 'gravatar' ? 200 : 100),
+          href: href
+        });
+      }, this)
+    );
   },
 
   destroyWorld: function () {
@@ -62,16 +73,17 @@ export default React.createClass({
     var body = this.world.CreateBody(bodyDef);
     Box2D.destroy(bodyDef);
 
+    var radius = options.radius;
     var pos = body.GetPosition();
     pos.Set(
-      Math.random() * window.innerWidth / config.ptm,
-      Math.random() * window.innerHeight / config.ptm
+      (radius + Math.random() * (window.innerWidth - radius * 2)) / config.ptm,
+      (radius + Math.random() * (window.innerHeight - radius * 2)) / config.ptm
     );
     body.SetTransform(pos, 0);
 
     var fixtureDef = new Box2D.b2FixtureDef();
     var circle = new Box2D.b2CircleShape();
-    circle.set_m_radius(options.radius / config.ptm);
+    circle.set_m_radius(radius / config.ptm);
     fixtureDef.set_shape(circle);
     fixtureDef.set_density(1);
     fixtureDef.set_friction(1);
@@ -112,8 +124,8 @@ export default React.createClass({
   },
 
   handleMouseMove: function (ev) {
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    var width = this.getWidth();
+    var height = this.getHeight();
     var x = (ev.clientX - (width * 0.5)) / width * config.gravity;
     var y = (ev.clientY - (height * 0.5)) / height * config.gravity;
     this.setGravity(x, y);
@@ -123,6 +135,14 @@ export default React.createClass({
     var x = ev.gamma / 90 * config.gravity;
     var y = ev.beta / 180 * config.gravity;
     this.setGravity(x, y);
+  },
+
+  getWidth: function () {
+    return window.innerWidth;
+  },
+
+  getHeight: function () {
+    return window.innerHeight;
   },
 
   setGravity: function (x, y) {
@@ -148,7 +168,11 @@ export default React.createClass({
 
   render: function () {
     return (
-      <div id='index' onMouseMove={this.handleMouseMove}>
+      <div
+        id='index'
+        style={{width: this.getWidth(), height: this.getHeight()}}
+        onMouseMove={this.handleMouseMove}
+      >
         {this.balls.map(this.renderBall)}
       </div>
     );
