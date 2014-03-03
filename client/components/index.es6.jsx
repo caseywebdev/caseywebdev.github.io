@@ -27,8 +27,8 @@ export default React.createClass({
     var wallsFixtureDef = new Box2D.b2FixtureDef();
     wallsFixtureDef.set_friction(1);
     wallsFixtureDef.set_restitution(0);
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    var width = this.getWidth();
+    var height = this.getHeight();
     wallsFixtureDef.set_shape(Box2D.CreateLoopShape([
       {x: 0, y: height / config.ptm},
       {x: 0, y: 0},
@@ -38,7 +38,7 @@ export default React.createClass({
     walls.CreateFixture(wallsFixtureDef);
     Box2D.destroy(wallsFixtureDef);
 
-    var scale = Math.min(width, height) / 900;
+    var scale = this.getScale();
     this.balls = _.times(Math.floor(scale * 100), function () {
       return this.createBall({
         className: 'gravatar',
@@ -76,8 +76,8 @@ export default React.createClass({
     var radius = options.radius;
     var pos = body.GetPosition();
     pos.Set(
-      (radius + Math.random() * (window.innerWidth - radius * 2)) / config.ptm,
-      (radius + Math.random() * (window.innerHeight - radius * 2)) / config.ptm
+      (radius + Math.random() * (this.getWidth() - radius * 2)) / config.ptm,
+      (radius + Math.random() * (this.getHeight() - radius * 2)) / config.ptm
     );
     body.SetTransform(pos, 0);
 
@@ -110,6 +110,10 @@ export default React.createClass({
     this.destroyWorld();
   },
 
+  getScale: function () {
+    return Math.min(this.getWidth(), this.getHeight()) / 900;
+  },
+
   step: function () {
     var now = _.now();
     var dt = (now - this.lastStep) / 1000;
@@ -126,14 +130,16 @@ export default React.createClass({
   handleMouseMove: function (ev) {
     var width = this.getWidth();
     var height = this.getHeight();
-    var x = (ev.clientX - (width * 0.5)) / width * config.gravity;
-    var y = (ev.clientY - (height * 0.5)) / height * config.gravity;
+    var gravity = this.getScale() * config.gravity;
+    var x = (ev.clientX - (width * 0.5)) / width * gravity;
+    var y = (ev.clientY - (height * 0.5)) / height * gravity;
     this.setGravity(x, y);
   },
 
   handleOrientation: function (ev) {
-    var x = ev.gamma / 90 * config.gravity;
-    var y = ev.beta / 180 * config.gravity;
+    var gravity = this.getScale() * config.gravity;
+    var x = ev.gamma / 90 * gravity;
+    var y = ev.beta / 180 * gravity;
     this.setGravity(x, y);
   },
 
