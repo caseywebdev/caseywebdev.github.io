@@ -12,7 +12,6 @@
     "csso": "x",
     "es6-module-transpiler": "x",
     "node-sass": "x",
-    "react-tools": "x",
-    "uglify-js": "x"
+    "react-tools": "x"
   }
 }
