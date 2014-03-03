@@ -38,5 +38,9 @@ export default {
   sps: 60,
 
   // m/s^2
-  gravity: 4 * 9.8
+  gravity: 10 * 9.8,
+
+  velocityIterations: 8,
+
+  positionIterations: 3
 };

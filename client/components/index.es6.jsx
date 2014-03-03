@@ -114,7 +114,7 @@ export default React.createClass({
     var now = _.now();
     var dt = (now - this.lastStep) / 1000;
     this.lastStep = now;
-    this.world.Step(dt, 8, 3);
+    this.world.Step(dt, config.velocityIterations, config.positionIterations);
     this.stepTimeoutId = setTimeout(this.step, 1000 / config.sps);
   },
 
