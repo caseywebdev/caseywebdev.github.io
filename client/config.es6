@@ -40,5 +40,5 @@ export default {
 
   getScale: function () {
     return Math.min(this.getWidth(), this.getHeight()) * this.dimensionScalar;
-  },
+  }
 };
