@@ -5,7 +5,7 @@ dev:
 	$(COGS) -w client,styles
 
 compress:
-	$(COGS) -c
+	JAVA_OPTS=-Xmx1024m $(COGS) -c
 
 deploy: compress
 	git commit -am "Release `date -u +%FT%TZ`"
