@@ -13,7 +13,7 @@ export default {
 
   positionIterations: 3,
 
-  dimensionScalar: 0.00111,
+  dimensionScalar: 0.001,
 
   colorSpeed: 0.01,
 
