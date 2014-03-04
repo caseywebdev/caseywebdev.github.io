@@ -72,6 +72,7 @@ var app = {
     app.renderTexture = app.renderTexture2;
     app.renderTexture2 = temp;
     app.echo.setTexture(app.renderTexture);
+    app.echo.rotation += 0.0001;
     app.echo.scale.x = app.echo.scale.y = 0.99;
     app.renderTexture2.render(app.stage, new PIXI.Point(0, 0), true);
     app.renderer.render(app.stage);
