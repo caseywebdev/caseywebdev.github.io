@@ -1,1 +1,28 @@
-body{overflow:hidden;margin:0;background:#667;font-family:Baskerville,Georgia,serif}.ball{display:block;position:absolute;border-radius:9999px;background:#334 no-repeat center center;background-size:contain}.gravatar{background-image:url('http://gravatar.com/avatar/ca34681a45aff25c58c7c5ce9a8b0a32?s=400')}.facebook{background-image:url('http://gravatar.com/avatar/18a83f753fa76b3ea0d594247f4c93b1?s=200')}.twitter{background-image:url('http://gravatar.com/avatar/2f4a8254d032a8ec5e4c48d461e54fcc?s=200')}.github{background-image:url('http://gravatar.com/avatar/61024896f291303615bcd4f7a0dcfb74?s=200')}.orgsync{background-image:url('http://gravatar.com/avatar/98626506be1ab97cad3db7834d23b6ce?s=200')}
+/* styles/index.scss */
+body {
+  overflow: hidden;
+  margin: 0;
+  background: #667;
+  font-family: Baskerville, Georgia, serif; }
+
+.ball {
+  display: block;
+  position: absolute;
+  border-radius: 9999px;
+  background: #334 no-repeat center center;
+  background-size: contain; }
+
+.gravatar {
+  background-image: url('http://gravatar.com/avatar/ca34681a45aff25c58c7c5ce9a8b0a32?s=400'); }
+
+.facebook {
+  background-image: url('http://gravatar.com/avatar/18a83f753fa76b3ea0d594247f4c93b1?s=200'); }
+
+.twitter {
+  background-image: url('http://gravatar.com/avatar/2f4a8254d032a8ec5e4c48d461e54fcc?s=200'); }
+
+.github {
+  background-image: url('http://gravatar.com/avatar/61024896f291303615bcd4f7a0dcfb74?s=200'); }
+
+.orgsync {
+  background-image: url('http://gravatar.com/avatar/98626506be1ab97cad3db7834d23b6ce?s=200'); }

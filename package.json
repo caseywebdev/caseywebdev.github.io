@@ -11,7 +11,6 @@
     "cogs": "x",
     "csso": "x",
     "es6-module-transpiler": "x",
-    "node-sass": "x",
-    "react-tools": "x"
+    "node-sass": "x"
   }
 }

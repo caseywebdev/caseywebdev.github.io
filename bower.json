@@ -5,7 +5,8 @@
   "dependencies": {
     "amdainty": "x",
     "box2d.js": "x",
-    "react": "x",
+    "herit": "x",
+    "pixi": "x",
     "underscore": "x"
   }
 }

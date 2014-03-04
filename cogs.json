@@ -3,8 +3,9 @@
     "amd.concat": true,
     "amd.basePath": "client",
     "amd.names": {
-      "box2d": "bower_components/box2d.js/box2d.umd.js",
-      "react": "bower_components/react/react.js",
+      "box2d-orig": "bower_components/box2d.js/box2d.umd.js",
+      "herit": "bower_components/herit/herit.js",
+      "pixi": "bower_components/pixi/bin/pixi.js",
       "underscore": "bower_components/underscore/underscore.js"
     },
     "processors.es6.options.compatFix": true,
