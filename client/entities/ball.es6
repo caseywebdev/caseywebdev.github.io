@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import Box2D from 'box2d';
+import Box2D from 'my-box2d';
 import config from 'config';
 import herit from 'herit';
 import PIXI from 'pixi';

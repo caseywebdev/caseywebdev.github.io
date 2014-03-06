@@ -3,7 +3,7 @@
     "amd.concat": true,
     "amd.basePath": "client",
     "amd.names": {
-      "box2d-pristine": "bower_components/box2d.js/box2d.umd.js",
+      "box2d": "bower_components/box2d.js/box2d.umd.js",
       "herit": "bower_components/herit/herit.js",
       "pixi": "bower_components/pixi/bin/pixi.js",
       "underscore": "bower_components/underscore/underscore.js"
