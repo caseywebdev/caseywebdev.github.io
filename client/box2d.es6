@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import Box2D from 'box2d-orig';
+import Box2D from 'box2d-pristine';
 
 Box2D.CreateVerticesPointer = function (vertices) {
   var ptr = Box2D.allocate(vertices.length * 8, 'float', Box2D.ALLOC_STACK);
