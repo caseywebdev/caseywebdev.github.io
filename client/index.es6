@@ -60,9 +60,9 @@ var app = {
   bkgColor: function () {
     var thirdPi = Math.PI / 3;
     var i = app.frame * config.colorSpeed;
-    var red = Math.sin(i) * 127 + 128;
+    var red = Math.sin(i + 4 * thirdPi) * 127 + 128;
     var green = Math.sin(i + 2 * thirdPi) * 127 + 128;
-    var blue = Math.sin(i + 4 * thirdPi) * 127 + 128;
+    var blue = Math.sin(i) * 127 + 128;
     return (red << 16) + (green << 8) + blue;
   },
 
