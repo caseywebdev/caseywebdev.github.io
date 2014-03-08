@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import Ball from 'entities/ball';
-import Box2D from 'my-box2d';
+import Box2D from 'box2d';
 import config from 'config';
 import herit from 'herit';
 
