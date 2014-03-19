@@ -1,7 +1,7 @@
 {
   "options": {
     "amd.concat": true,
-    "amd.basePath": "client",
+    "amd.basePath": "scripts",
     "amd.names": {
       "box2d-pristine": "bower_components/box2d.js/box2d.umd.js",
       "herit": "bower_components/herit/herit.js",
@@ -16,7 +16,7 @@
     "css": "csso"
   },
   "targets": {
-    "client/index.es6": "public",
+    "scripts/index.es6": "public",
     "styles/index.scss": "public"
   }
 }
