@@ -8,7 +8,7 @@ export default herit({
   constructor: function (options) {
     this.world = options.world;
     this.radius = options.radius;
-    this.image = config.gravatars[options.image];
+    this.image = options.image;
     this.url = options.url;
     this.b2 = this.createB2();
     this.sprite = this.createSprite();

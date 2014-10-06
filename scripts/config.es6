@@ -17,17 +17,31 @@ export default {
 
   colorSpeed: 0.01,
 
-  gravatars: {
-    casey:
-      'http://gravatar.com/avatar/ca34681a45aff25c58c7c5ce9a8b0a32?s=400',
-    facebook:
-      'http://gravatar.com/avatar/18a83f753fa76b3ea0d594247f4c93b1?s=200',
-    twitter:
-      'http://gravatar.com/avatar/2f4a8254d032a8ec5e4c48d461e54fcc?s=200',
-    github:
-      'http://gravatar.com/avatar/61024896f291303615bcd4f7a0dcfb74?s=200',
-    orgsync:
-      'http://gravatar.com/avatar/98626506be1ab97cad3db7834d23b6ce?s=200'
+  links: {
+    casey: {
+      url: 'mailto:c@sey.me',
+      image: 'http://gravatar.com/avatar/ca34681a45aff25c58c7c5ce9a8b0a32?s=400'
+    },
+    facebook: {
+      url: 'https://www.facebook.com/caseywebdev',
+      image: 'http://gravatar.com/avatar/18a83f753fa76b3ea0d594247f4c93b1?s=200'
+    },
+    twitter: {
+      url: 'https://twitter.com/caseywebdev',
+      image: 'http://gravatar.com/avatar/2f4a8254d032a8ec5e4c48d461e54fcc?s=200'
+    },
+    github: {
+      url: 'https://github.com/caseywebdev',
+      image: 'http://gravatar.com/avatar/61024896f291303615bcd4f7a0dcfb74?s=200'
+    },
+    orgsync: {
+      url: 'http://www.orgsync.com/company/team_member/casey-foster',
+      image: 'http://gravatar.com/avatar/98626506be1ab97cad3db7834d23b6ce?s=200'
+    },
+    coderiety: {
+      url: 'http://www.coderiety.com',
+      image: 'http://gravatar.com/avatar/e916863a6d94694aee15adb363333feb?s=200'
+    }
   },
 
   getWidth: function () {

@@ -47,21 +47,15 @@ export default herit({
     var scale = config.getScale();
     return _.times(Math.floor(scale * 20), function () {
       return this.createBall({
-        image: 'casey',
+        image: config.links.casey.image,
         radius: scale * (25 + Math.random() * 25)
       });
     }, this).concat(
-      _.map({
-        casey: 'mailto:c@sey.me',
-        facebook: 'https://www.facebook.com/caseywebdev',
-        twitter: 'https://twitter.com/caseywebdev',
-        github: 'https://github.com/caseywebdev',
-        orgsync: 'http://www.orgsync.com/company/team_member/casey-foster'
-      }, function (url, image) {
+      _.map(config.links, function (link, name) {
         return this.createBall({
-          image: image,
-          radius: scale * (image === 'casey' ? 200 : 100),
-          url: url
+          image: link.image,
+          radius: scale * (name === 'casey' ? 200 : 100),
+          url: link.url
         });
       }, this)
     );
