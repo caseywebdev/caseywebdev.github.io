@@ -1,16 +1,19 @@
 {
-  "name": "caseywebdev.github.io",
-  "version": "0.0.0",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:caseywebdev/caseywebdev.github.io"
-  },
-  "devDependencies": {
-    "bower": "x",
-    "cogs": "x",
-    "csso": "x",
-    "es6-module-transpiler": "0.4.0",
-    "node-sass": "x"
+  "dependencies": {
+    "babel-plugin-transform-runtime": "6",
+    "babel-preset-env": "1",
+    "babel-preset-react": "6",
+    "babel-preset-stage-0": "6",
+    "box2d.js": "1",
+    "cogs-transformer-autoprefixer": "3",
+    "cogs-transformer-babel": "3",
+    "cogs-transformer-clean-css": "3",
+    "cogs-transformer-concat-commonjs": "3",
+    "cogs-transformer-sass": "3",
+    "cogs-transformer-uglify-js": "3",
+    "cogs": "4",
+    "pixi": "0.3",
+    "underscore": "1"
   }
 }

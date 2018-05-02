@@ -2,10 +2,10 @@ BIN=node_modules/.bin/
 COGS=$(BIN)cogs
 
 dev:
-	$(COGS) -w scripts,styles
+	$(COGS) -w 'scripts/**/*' -w 'styles/**/*'
 
 compress:
-	JAVA_OPTS=-Xmx1024m $(COGS) -c
+	MINIFY=1 $(COGS)
 
 deploy: compress
 	git commit -am "Release `date -u +%FT%TZ`"
