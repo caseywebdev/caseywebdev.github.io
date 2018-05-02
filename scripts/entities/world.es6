@@ -1,24 +1,25 @@
 import _ from 'underscore';
-import Ball from './ball';
-import Box2D from '../box2d';
-import config from '../config';
+import Ball from 'entities/ball';
+import Box2D from 'box2d';
+import config from 'config';
+import herit from 'herit';
 
-export default class {
-  constructor(options) {
+export default herit({
+  constructor: function (options) {
     this.container = options.container;
     this.b2 = this.createB2();
     this.walls = this.createWalls();
     this.balls = this.createBalls();
-  }
+  },
 
-  createB2() {
+  createB2: function () {
     var gravity = new Box2D.b2Vec2(0, 9.8);
     var b2 = new Box2D.b2World(gravity);
     Box2D.destroy(gravity);
     return b2;
-  }
+  },
 
-  createWalls() {
+  createWalls: function () {
     var wallsBodyDef = new Box2D.b2BodyDef();
     var walls = this.b2.CreateBody(wallsBodyDef);
     Box2D.destroy(wallsBodyDef);
@@ -36,13 +37,13 @@ export default class {
     walls.CreateFixture(wallsFixtureDef);
     Box2D.destroy(wallsFixtureDef);
     return walls;
-  }
+  },
 
-  removeWalls() {
+  removeWalls: function () {
     this.b2.DestroyBody(this.walls);
-  }
+  },
 
-  createBalls() {
+  createBalls: function () {
     var scale = config.getScale();
     return _.times(Math.floor(scale * 20), function () {
       return this.createBall({
@@ -58,35 +59,35 @@ export default class {
         });
       }, this)
     );
-  }
+  },
 
-  createBall(options) {
+  createBall: function (options) {
     var ball = new Ball(_.extend({world: this}, options));
     this.container.addChild(ball.sprite);
     return ball;
-  }
+  },
 
-  removeBall(ball) {
+  removeBall: function (ball) {
     ball.destroy();
     this.container.removeChild(ball.sprite);
-  }
+  },
 
-  setGravity(x, y) {
+  setGravity: function (x, y) {
     var gravity = this.b2.GetGravity();
     gravity.Set(x, y);
     this.b2.SetGravity(gravity);
     _.invoke(_.pluck(this.balls, 'b2'), 'SetAwake', true);
-  }
+  },
 
-  resize() {
+  resize: function () {
     this.removeWalls();
     this.walls = this.createWalls();
     _.each(this.balls, this.removeBall, this);
     this.balls = this.createBalls();
-  }
+  },
 
-  step(dt) {
+  step: function (dt) {
     this.b2.Step(dt, config.velocityIterations, config.positionIterations);
     _.invoke(this.balls, 'updateSprite');
   }
-}
+});

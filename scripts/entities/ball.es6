@@ -1,19 +1,20 @@
 import _ from 'underscore';
-import Box2D from '../box2d';
-import config from '../config';
+import Box2D from 'box2d';
+import config from 'config';
+import herit from 'herit';
 import PIXI from 'pixi';
 
-export default class {
-  constructor(options) {
+export default herit({
+  constructor: function (options) {
     this.world = options.world;
     this.radius = options.radius;
     this.image = options.image;
     this.url = options.url;
     this.b2 = this.createB2();
     this.sprite = this.createSprite();
-  }
+  },
 
-  createB2() {
+  createB2: function () {
     var bodyDef = new Box2D.b2BodyDef();
     bodyDef.set_type(Box2D.b2_dynamicBody);
 
@@ -42,9 +43,9 @@ export default class {
     Box2D.destroy(fixtureDef);
 
     return b2;
-  }
+  },
 
-  createSprite() {
+  createSprite: function () {
     // var container = new PIXI.DisplayObjectContainer();
 
     // var mask = new PIXI.Graphics();
@@ -65,16 +66,16 @@ export default class {
 
     // container.addChild(sprite);
     return sprite;
-  }
+  },
 
-  destroy() {
+  destroy: function () {
     this.world.b2.DestroyBody(this.b2);
-  }
+  },
 
-  updateSprite() {
+  updateSprite: function () {
     var position = this.b2.GetPosition();
     this.sprite.position.x = position.get_x() * config.ptm;
     this.sprite.position.y = position.get_y() * config.ptm;
     this.sprite.rotation = this.b2.GetAngle();
   }
-}
+});

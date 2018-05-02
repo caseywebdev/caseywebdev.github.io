@@ -1,7 +1,11 @@
+//= require bower_components/amdainty/amdainty.js
+//= requireSelf
+//= require ./init.js
+
 import _ from 'underscore';
-import config from './config';
+import config from 'config';
 import PIXI from 'pixi';
-import World from './entities/world';
+import World from 'entities/world';
 
 var app = {
   frame: 0,
@@ -10,8 +14,8 @@ var app = {
 
     // Switch to autoDetectRenderer once webgl/mask bug is fixed.
     app.renderer =
-      PIXI.autoDetectRenderer(config.getWidth(), config.getHeight());
-    app.stage = new PIXI.Stage(app.bkgColor, true);
+      PIXI.autoDetectRenderer(config.getWidth(), config.getHeight()),
+    app.stage = new PIXI.Stage(app.bkgColor, true),
     app.renderTexture =
       new PIXI.RenderTexture(config.getWidth(), config.getHeight());
     app.renderTexture2 =

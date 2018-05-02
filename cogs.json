@@ -1,0 +1,22 @@
+{
+  "options": {
+    "concatAmd": true,
+    "basePath": "scripts",
+    "names": {
+      "box2d-pristine": "bower_components/box2d.js/box2d.umd.js",
+      "herit": "bower_components/herit/herit.js",
+      "pixi": "bower_components/pixi/bin/pixi.js",
+      "underscore": "bower_components/underscore/underscore.js"
+    },
+    "processors.es6.options.compatFix": true,
+    "compressors.js.options.arguments": ["--warning_level=QUIET"]
+  },
+  "compressors": {
+    "js": "closure-compiler",
+    "css": "csso"
+  },
+  "targets": {
+    "scripts/index.es6": "public",
+    "styles/index.scss": "public"
+  }
+}

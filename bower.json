@@ -1,0 +1,12 @@
+{
+  "name": "caseywebdev.github.io",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "amdainty": "x",
+    "box2d.js": "x",
+    "herit": "x",
+    "pixi": "x",
+    "underscore": "x"
+  }
+}
