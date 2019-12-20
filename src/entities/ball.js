@@ -1,11 +1,12 @@
 import _ from 'underscore';
-import Box2D from '../box2d.js';
-import config from '../config.js';
 import herit from 'herit';
 import PIXI from 'pixi';
 
+import Box2D from '../box2d.js';
+import config from '../config.js';
+
 export default herit({
-  constructor: function (options) {
+  constructor: function(options) {
     this.world = options.world;
     this.radius = options.radius;
     this.image = options.image;
@@ -14,7 +15,7 @@ export default herit({
     this.sprite = this.createSprite();
   },
 
-  createB2: function () {
+  createB2: function() {
     var bodyDef = new Box2D.b2BodyDef();
     bodyDef.set_type(Box2D.b2_dynamicBody);
 
@@ -45,7 +46,7 @@ export default herit({
     return b2;
   },
 
-  createSprite: function () {
+  createSprite: function() {
     // var container = new PIXI.DisplayObjectContainer();
 
     // var mask = new PIXI.Graphics();
@@ -68,11 +69,11 @@ export default herit({
     return sprite;
   },
 
-  destroy: function () {
+  destroy: function() {
     this.world.b2.DestroyBody(this.b2);
   },
 
-  updateSprite: function () {
+  updateSprite: function() {
     var position = this.b2.GetPosition();
     this.sprite.position.x = position.get_x() * config.ptm;
     this.sprite.position.y = position.get_y() * config.ptm;
