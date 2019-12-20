@@ -39,7 +39,7 @@ module.exports = {
       MINIFY
         ? {
             name: 'terser',
-            only: '**/*.+js',
+            only: '**/*.js',
             except: '**/*+(-|_|.)min.js'
           }
         : []
