@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import PIXI from 'pixi';
+import PIXI from 'pixi.js';
 
 import config from './config.js';
 import World from './entities/world.js';
@@ -74,7 +74,7 @@ var app = {
     app.renderTexture = app.renderTexture2;
     app.renderTexture2 = temp;
     app.echo.setTexture(app.renderTexture);
-    app.echo.rotation = 0.05;
+    app.echo.rotation = Math.sin(app.frame * config.colorSpeed * 0.1) * 0.1;
     app.echo.scale.x = app.echo.scale.y = 0.99;
     app.renderTexture2.render(app.stage, new PIXI.Point(0, 0), true);
     app.renderer.render(app.stage);

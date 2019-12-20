@@ -44,6 +44,6 @@ module.exports = {
           }
         : []
     ),
-    builds: { 'src/index.js': { base: 'src', dir: 'docs' } }
+    builds: { 'src/index.js': { base: 'src', dir: '.' } }
   }
 };

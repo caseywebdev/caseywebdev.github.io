@@ -14,7 +14,7 @@ export default {
 
   dimensionScalar: 0.001,
 
-  colorSpeed: 0.01,
+  colorSpeed: 0.05,
 
   links: {
     casey: {

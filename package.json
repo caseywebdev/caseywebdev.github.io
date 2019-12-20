@@ -14,7 +14,7 @@
     "cogs-transformer-underscore-template": "1",
     "cogs": "4",
     "herit": "2",
-    "pixi": "0.3",
+    "pixi.js": "1.6",
     "underscore": "1"
   }
 }
