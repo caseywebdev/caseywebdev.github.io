@@ -1,6 +1,6 @@
 import _ from 'underscore';
-import Box2D from 'box2d';
-import config from 'config';
+import Box2D from '../box2d.js';
+import config from '../config.js';
 import herit from 'herit';
 import PIXI from 'pixi';
 

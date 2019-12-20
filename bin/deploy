@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+MINIFY=1 bin/build
+git commit -am "Release `date -u +%FT%TZ`"
+git push

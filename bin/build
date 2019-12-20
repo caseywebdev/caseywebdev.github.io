@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+CMD='node_modules/.bin/cogs'
+
+if [ "$WATCH" = "1" ]; then
+  exec $CMD -w 'src/**'
+else
+  exec $CMD
+fi

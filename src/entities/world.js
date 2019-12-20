@@ -1,7 +1,7 @@
 import _ from 'underscore';
-import Ball from 'entities/ball';
-import Box2D from 'box2d';
-import config from 'config';
+import Ball from './ball.js';
+import Box2D from '../box2d.js';
+import config from '../config.js';
 import herit from 'herit';
 
 export default herit({

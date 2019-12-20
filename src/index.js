@@ -1,11 +1,7 @@
-//= require bower_components/amdainty/amdainty.js
-//= requireSelf
-//= require ./init.js
-
 import _ from 'underscore';
-import config from 'config';
+import config from './config.js';
 import PIXI from 'pixi';
-import World from 'entities/world';
+import World from './entities/world.js';
 
 var app = {
   frame: 0,
