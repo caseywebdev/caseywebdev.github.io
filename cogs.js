@@ -33,13 +33,13 @@ module.exports = {
       },
       {
         name: 'concat-commonjs',
-        only: '**/*.+(css|js|json|svg)',
+        only: '**/*.js',
         options: { entry: 'src/index.js' }
       },
       MINIFY
         ? {
             name: 'terser',
-            only: '**/*.+(css|js|json|svg)',
+            only: '**/*.+js',
             except: '**/*+(-|_|.)min.js'
           }
         : []
